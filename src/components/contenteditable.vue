@@ -20,7 +20,7 @@
 <script setup lang="ts">
 
 
-import { defineProps, ref, computed, onMounted, watch } from 'vue';
+import { defineProps, ref, computed, onMounted, watch, defineExpose } from 'vue';
 
 function replaceAll(str: string, search: string, replacement: string) {
   return str.split(search).join(replacement);
@@ -62,6 +62,10 @@ function currentContent(){
 function onFocus() {
   element.value!.focus();
 }
+
+defineExpose({
+  onFocus
+});
 
 function updateContent(newcontent: string){
   if(props.noHtml) {
