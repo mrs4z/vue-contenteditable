@@ -21,7 +21,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     "returned": String,
     "update:modelValue": String
   },
-  setup(__props, { emit }) {
+  setup(__props, { expose, emit }) {
     const props = __props;
     function replaceAll(str, search, replacement) {
       return str.split(search).join(replacement);
@@ -30,6 +30,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     function currentContent() {
       return props.noHtml ? element.value.innerText : element.value.innerHTML;
     }
+    function onFocus() {
+      console.log("focuseeeed");
+      element.value.focus();
+    }
+    const test = { a: 1 };
     function updateContent(newcontent) {
       if (props.noHtml) {
         element.value.innerText = newcontent;
@@ -73,6 +78,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       var _a;
       updateContent((_a = props.modelValue) != null ? _a : "");
     }, { flush: "post" });
+    expose({
+      onFocus,
+      test
+    });
     return (_ctx, _cache) => {
       return openBlock(), createBlock(resolveDynamicComponent(__props.tag), {
         contenteditable: __props.contenteditable,
@@ -80,6 +89,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         onBlur: update,
         onPaste,
         onKeypress,
+        onClick: onFocus,
         ref_key: "element",
         ref: element
       }, null, 40, ["contenteditable"]);

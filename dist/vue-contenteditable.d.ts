@@ -83,7 +83,7 @@ declare module "components/__VLS_types" {
     } : {};
 }
 declare module "components/contenteditable.vue.__VLS_script" {
-    import { defineProps, ref, computed, onMounted, watch } from 'vue';
+    import { defineProps, ref, computed, onMounted, watch, defineExpose } from 'vue';
     const _default: import("vue").DefineComponent<{
         tag: StringConstructor;
         contenteditable: {
@@ -105,6 +105,7 @@ declare module "components/contenteditable.vue.__VLS_script" {
         computed: typeof import("@vue/reactivity").computed;
         onMounted: (hook: () => any, target?: import("vue").ComponentInternalInstance | null | undefined) => false | Function | undefined;
         watch: typeof watch;
+        defineExpose: typeof defineExpose;
         replaceAll: (str: string, search: string, replacement: string) => string;
         props: Readonly<import("vue").ExtractPropTypes<{
             tag: StringConstructor;
@@ -125,6 +126,10 @@ declare module "components/contenteditable.vue.__VLS_script" {
         emit: ((event: "returned", value?: any) => void) & ((event: "update:modelValue", value?: any) => void);
         element: import("vue").Ref<HTMLElement | null | undefined>;
         currentContent: () => string;
+        onFocus: () => void;
+        test: {
+            a: number;
+        };
         updateContent: (newcontent: string) => void;
         update: (event: any) => void;
         onPaste: (event: any) => void;
@@ -179,7 +184,7 @@ declare module "components/contenteditable.vue.__VLS_script" {
         };
     };
     export const __VLS_name: 'contenteditable';
-    export { defineProps as __VLS_types_defineProps, ref as __VLS_types_ref, computed as __VLS_types_computed, onMounted as __VLS_types_onMounted, watch as __VLS_types_watch, };
+    export { defineProps as __VLS_types_defineProps, ref as __VLS_types_ref, computed as __VLS_types_computed, onMounted as __VLS_types_onMounted, watch as __VLS_types_watch, defineExpose as __VLS_types_defineExpose, };
 }
 declare module "components/contenteditable.vue.__VLS_template" {
     var __VLS_slots: {};
@@ -201,7 +206,12 @@ declare module "components/contenteditable.vue" {
             type: BooleanConstructor;
             default: boolean;
         };
-    }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    }, {
+        onFocus: () => void;
+        test: {
+            a: number;
+        };
+    }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
         returned: StringConstructor;
         'update:modelValue': StringConstructor;
     }, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
