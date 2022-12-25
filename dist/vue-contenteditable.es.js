@@ -33,6 +33,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     function onFocus() {
       console.log("focuseeeed");
       element.value.focus();
+      console.log(element.value);
     }
     const test = { a: 1 };
     function updateContent(newcontent) {
