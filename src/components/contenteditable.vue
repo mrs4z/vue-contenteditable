@@ -20,7 +20,7 @@
 <script setup lang="ts">
 
 
-import { defineProps, ref, computed, onMounted, watch, defineExpose } from 'vue';
+import { defineProps, ref, computed, onMounted, watch, defineExpose, nextTick } from 'vue';
 
 function replaceAll(str: string, search: string, replacement: string) {
   return str.split(search).join(replacement);
@@ -61,8 +61,9 @@ function currentContent(){
 
 function onFocus() {
   console.log('focuseeeed');
-  element.value!.focus();
-  console.log(element.value);
+  nextTick(() => {
+    element.value!.focus();
+  });
 }
 
 const test = { a: 1 };
@@ -117,7 +118,8 @@ watch( () => props.tag, (newval, oldval)  => {
 
 defineExpose({
   onFocus,
-  test
+  test,
+  element
 });
 
 </script>

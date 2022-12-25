@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted, watch, openBlock, createBlock, resolveDynamicComponent } from "vue";
+import { defineComponent, ref, onMounted, watch, openBlock, createBlock, resolveDynamicComponent, nextTick } from "vue";
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "contenteditable",
   props: {
@@ -32,8 +32,9 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     }
     function onFocus() {
       console.log("focuseeeed");
-      element.value.focus();
-      console.log(element.value);
+      nextTick(() => {
+        element.value.focus();
+      });
     }
     const test = { a: 1 };
     function updateContent(newcontent) {
@@ -81,7 +82,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     }, { flush: "post" });
     expose({
       onFocus,
-      test
+      test,
+      element
     });
     return (_ctx, _cache) => {
       return openBlock(), createBlock(resolveDynamicComponent(__props.tag), {
