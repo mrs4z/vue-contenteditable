@@ -60,12 +60,11 @@ function currentContent(){
 }
 
 function onFocus() {
+  console.log('focuseeeed');
   element.value!.focus();
 }
 
-defineExpose({
-  onFocus
-});
+const test = { a: 1 };
 
 function updateContent(newcontent: string){
   if(props.noHtml) {
@@ -114,6 +113,11 @@ watch( () => props.noHtml, (newval, oldval)  => {
 watch( () => props.tag, (newval, oldval)  => {
   updateContent(props.modelValue ?? '');
 }, { flush: 'post' });
+
+defineExpose({
+  onFocus,
+  test
+});
 
 </script>
 
