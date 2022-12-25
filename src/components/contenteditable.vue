@@ -11,6 +11,7 @@
     @blur="update"
     @paste="onPaste"
     @keypress="onKeypress"
+    @click="onFocus"
     ref="element"
   >
   </component>
@@ -56,6 +57,10 @@ function currentContent(){
     element.value!.innerText
     :
     element.value!.innerHTML
+}
+
+function onFocus() {
+  element.value!.focus();
 }
 
 function updateContent(newcontent: string){
